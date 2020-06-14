@@ -31,7 +31,7 @@
 		"build:clean": "lerna run clean --stream",
 		"test:ci": "lerna run test --stream -- --runInBand --ci ",
 		"pretty": "prettier --write \"packages/**/*.{ts,tsx,scss,js,jsx}\"",
-    "postinstall": "yarn build"
+    "prepare": "yarn build"
 	},
 	"peerDependencies": {
 		"closest": "^0.0.1",
