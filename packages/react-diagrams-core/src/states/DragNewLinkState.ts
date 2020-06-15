@@ -20,6 +20,11 @@ export interface DragNewLinkStateOptions {
 	 * If enabled, then a link can still be drawn from the port even if it is locked
 	 */
 	allowLinksFromLockedPorts?: boolean;
+
+	/**
+	 * If enabled, when a new link is created - it will be unselected
+	 */
+	allowSelectionReset?: boolean;
 }
 
 export class DragNewLinkState extends AbstractDisplacementState<DiagramEngine> {
@@ -33,6 +38,7 @@ export class DragNewLinkState extends AbstractDisplacementState<DiagramEngine> {
 		this.config = {
 			allowLooseLinks: true,
 			allowLinksFromLockedPorts: false,
+			allowSelectionReset: false,
 			...options
 		};
 
@@ -70,6 +76,9 @@ export class DragNewLinkState extends AbstractDisplacementState<DiagramEngine> {
 						if (this.port.canLinkToPort(model)) {
 							this.link.setTargetPort(model);
 							model.reportPosition();
+							if (this.config.allowSelectionReset) {
+								this.link.setSelected(false);
+							}
 							this.engine.repaintCanvas();
 							return;
 						} else {
