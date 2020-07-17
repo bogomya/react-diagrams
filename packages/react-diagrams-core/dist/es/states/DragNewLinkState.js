@@ -6,7 +6,7 @@ const PortModel_1 = require("../entities/port/PortModel");
 class DragNewLinkState extends react_canvas_core_1.AbstractDisplacementState {
     constructor(options = {}) {
         super({ name: 'drag-new-link' });
-        this.config = Object.assign({ allowLooseLinks: true, allowLinksFromLockedPorts: false, allowSelectionReset: true }, options);
+        this.config = Object.assign({ allowLooseLinks: true, allowLinksFromLockedPorts: false, allowSelectionReset: false }, options);
         this.registerAction(new react_canvas_core_1.Action({
             type: react_canvas_core_1.InputType.MOUSE_DOWN,
             fire: (event) => {
@@ -40,6 +40,7 @@ class DragNewLinkState extends react_canvas_core_1.AbstractDisplacementState {
                             this.link.setSelected(false);
                         }
                         this.engine.repaintCanvas();
+                        this.engine.fireEvent({ link: this.link }, 'linkCreated');
                         return;
                     }
                     else {

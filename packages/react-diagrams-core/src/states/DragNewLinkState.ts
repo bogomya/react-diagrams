@@ -80,6 +80,7 @@ export class DragNewLinkState extends AbstractDisplacementState<DiagramEngine> {
 								this.link.setSelected(false);
 							}
 							this.engine.repaintCanvas();
+							this.engine.fireEvent({ link: this.link } as any, 'linkCreated');
 							return;
 						} else {
 							this.link.remove();
