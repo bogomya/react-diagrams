@@ -40,7 +40,7 @@ class DragNewLinkState extends react_canvas_core_1.AbstractDisplacementState {
                             this.link.setSelected(false);
                         }
                         this.engine.repaintCanvas();
-                        this.engine.fireEvent({ link: this.link }, 'linkCreated');
+                        this.engine.getModel().fireEvent({ link: this.link }, 'linkCreated');
                         return;
                     }
                     else {
