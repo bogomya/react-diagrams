@@ -15,6 +15,7 @@ class DefaultLinkSegmentWidget extends React.Component {
                 if (!this.props.link.isLocked()) {
                     event.preventDefault();
                     this.props.link.remove();
+                    this.props.diagramEngine.getModel().fireEvent({ link: this.props.link }, 'linkRemoved');
                 }
             } }));
         return (React.createElement("g", null,
