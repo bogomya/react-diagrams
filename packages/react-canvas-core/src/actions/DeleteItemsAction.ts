@@ -36,6 +36,7 @@ export class DeleteItemsAction extends Action {
 						// only delete items which are not locked
 						if (!model.isLocked()) {
 							model.remove();
+							this.engine.getModel().fireEvent({ model }, 'itemRemoved');
 						}
 					});
 					this.engine.repaintCanvas();
