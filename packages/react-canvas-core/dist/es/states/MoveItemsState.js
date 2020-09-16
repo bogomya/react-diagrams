@@ -13,6 +13,9 @@ class MoveItemsState extends AbstractDisplacementState_1.AbstractDisplacementSta
             type: Action_1.InputType.MOUSE_DOWN,
             fire: (event) => {
                 const element = this.engine.getActionEventBus().getModelForEvent(event);
+                if (!element) {
+                    return;
+                }
                 if (!element.isSelected()) {
                     this.engine.getModel().clearSelection();
                 }

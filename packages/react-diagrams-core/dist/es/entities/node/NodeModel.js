@@ -89,14 +89,6 @@ class NodeModel extends react_canvas_core_1.BasePositionModel {
     addPort(port) {
         port.setParent(this);
         this.ports[port.getName()] = port;
-        port.registerListener({
-            portLinkRemoved: event => {
-                this.fireEvent(Object.assign(Object.assign({}, event), { port }), 'nodeLinkRemoved');
-            },
-            portLinkAdded: event => {
-                this.fireEvent(Object.assign(Object.assign({}, event), { port }), 'nodeLinkAdded');
-            }
-        });
         return port;
     }
     updateDimensions({ width, height }) {

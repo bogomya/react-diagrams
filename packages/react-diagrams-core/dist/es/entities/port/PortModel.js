@@ -54,11 +54,9 @@ class PortModel extends react_canvas_core_1.BasePositionModel {
     }
     removeLink(link) {
         delete this.links[link.getID()];
-        this.fireEvent({ link }, 'portLinkRemoved');
     }
     addLink(link) {
         this.links[link.getID()] = link;
-        this.fireEvent({ link }, 'portLinkAdded');
     }
     getLinks() {
         return this.links;

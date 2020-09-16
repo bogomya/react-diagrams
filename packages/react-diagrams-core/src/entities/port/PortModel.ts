@@ -104,12 +104,10 @@ export class PortModel<G extends PortModelGenerics = PortModelGenerics> extends 
 
 	removeLink(link: LinkModel) {
 		delete this.links[link.getID()];
-		this.fireEvent({ link }, 'portLinkRemoved');
 	}
 
 	addLink(link: LinkModel) {
 		this.links[link.getID()] = link;
-		this.fireEvent({ link }, 'portLinkAdded');
 	}
 
 	getLinks(): { [id: string]: LinkModel } {

@@ -20,6 +20,12 @@ class AbstractDisplacementState extends State_1.State {
             type: Action_1.InputType.MOUSE_MOVE,
             fire: (actionEvent) => {
                 const { event } = actionEvent;
+                if (event.buttons === 0) {
+                    // If buttons is 0, it means the mouse is not down, the user may have released it
+                    // outside of the canvas, then we eject the state
+                    this.eject();
+                    return;
+                }
                 this.fireMouseMoved({
                     displacementX: event.clientX - this.initialX,
                     displacementY: event.clientY - this.initialY,
